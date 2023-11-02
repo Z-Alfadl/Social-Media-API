@@ -22,7 +22,6 @@ const reactionSchema = new Schema(
             default: Date.now,
             //Formats the date as M/D/2023 when queried
             get: (createdAt) => createdAt.toLocaleDateString('en-US')
-
         }
     },
     {

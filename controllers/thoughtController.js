@@ -82,12 +82,11 @@ module.exports = {
           .status(404)
           .json({ message: "No thought or user with this ID exists" });
       }
-      res.json(thought);
+      res.json('Thought successfully deleted');
     } catch (err) {
       return res.status(500).json(err);
     }
   },
-  //add create/deleteReaction
   async createReaction(req, res) {
     try {
         //Find thought by _id and add reaction subdocument to reactions array
@@ -121,7 +120,7 @@ module.exports = {
           .status(404)
           .json({ message: "No thought with this ID exists" });
       }
-      res.json(thought);
+      res.json('Reaction successfully deleted');
     } catch (err) {
       return res.status(500).json(err);
     }

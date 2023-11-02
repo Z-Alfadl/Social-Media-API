@@ -69,36 +69,36 @@ module.exports = {
   },
   async addFriend(req, res) {
     try {
-      const friend = await User.findOneAndUpdate(
+      const usersfriend = await User.findOneAndUpdate(
         //finds user by userId paramater
         { _id: req.params.userId },
         //add friendId parameter to User.friends array
         { $addToSet: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
-      if (!friend) {
+      if (!usersfriend) {
         res.status(404).json({ message: "No user with that ID exists" });
       }
 
-      res.json(friend);
+      res.json(`Friend succesfully added to ${usersfriend.username}'s friends list`);
     } catch (err) {
       res.status(500).json(err);
     }
   },
   async removeFriend(req, res) {
     try {
-      const friend = await User.findOneAndUpdate(
+      const usersfriend = await User.findOneAndUpdate(
         //finds user by userId paramater
         { _id: req.params.userId },
         //add friendId parameter to User.friends array
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
-      if (!friend) {
+      if (!usersfriend) {
         res.status(404).json({ message: "No user with that ID exists" });
       }
 
-      res.json(friend);
+      res.json(`Friend has been removed from ${usersfriend.username}'s friends list`);
     } catch (err) {
       res.status(500).json(err);
     }
